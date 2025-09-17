@@ -1,3 +1,4 @@
+using ChatZone.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
