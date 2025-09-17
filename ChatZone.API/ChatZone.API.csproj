@@ -14,10 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChatZone.Core.Domain\ChatZone.Core.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ChatZone.Infrastructure\ChatZone.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

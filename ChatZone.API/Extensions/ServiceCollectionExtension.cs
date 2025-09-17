@@ -1,4 +1,6 @@
 ﻿using ChatZone.Core.Domain;
+using ChatZone.Core.Domain.Interfaces.Repositories;
+using ChatZone.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChatZone.API.Extensions {
@@ -8,6 +10,11 @@ namespace ChatZone.API.Extensions {
             var connectionString = configuration.GetValue<string>("ConnectionString");
             services.AddDbContext<ChatDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            return services;
+        }
+
+        public static IServiceCollection AddServices(this IServiceCollection services) {
+            services.AddTransient<IUserRepository, UserRepository>();
             return services;
         }
     }
