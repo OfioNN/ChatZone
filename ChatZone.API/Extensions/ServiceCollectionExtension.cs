@@ -1,5 +1,7 @@
-﻿using ChatZone.Core.Domain;
+﻿using ChatZone.Core.Application.Services;
+using ChatZone.Core.Domain;
 using ChatZone.Core.Domain.Interfaces.Repositories;
+using ChatZone.Core.Domain.Interfaces.Services;
 using ChatZone.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,7 @@ namespace ChatZone.API.Extensions {
 
         public static IServiceCollection AddServices(this IServiceCollection services) {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAuthService, AuthService>();
             return services;
         }
     }

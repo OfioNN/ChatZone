@@ -1,4 +1,5 @@
 ﻿using ChatZone.Core.Domain.Interfaces.Repositories;
+using ChatZone.Core.Domain.Interfaces.Services;
 using ChatZone.Core.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,21 +10,19 @@ namespace ChatZone.API.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IAuthService _userService;
 
-        public AuthController(IUserRepository userRepository) {
-            _userRepository = userRepository;
+        public AuthController(IAuthService userService) {
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<JsonResult> GetUser() {
-            var user = new User() {
-                Username = "test",
-                Password = "haslo",
-            };
-
-            await _userRepository.AddUser(user);
-            return Json(user);
+            await _userService.RegisterUser(new Core.Domain.Dtos.RegisterUserDto() {
+                Username = "test1",
+                Password = "test"
+            });
+            return Json("");
         }
     }
 }

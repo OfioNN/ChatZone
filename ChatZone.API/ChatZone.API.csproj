@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChatZone.Core.Application\ChatZone.Core.Application.csproj" />
     <ProjectReference Include="..\ChatZone.Core.Domain\ChatZone.Core.Domain.csproj" />
     <ProjectReference Include="..\ChatZone.Infrastructure\ChatZone.Infrastructure.csproj" />
   </ItemGroup>
