@@ -1,4 +1,5 @@
 ﻿using ChatZone.Core.Domain;
+using ChatZone.Core.Domain.Exeptions;
 using ChatZone.Core.Domain.Interfaces.Repositories;
 using ChatZone.Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace ChatZone.Infrastructure.Repositories
                 Chat? chat = await GetChat(chatName, pageNumber, pageSize);
 
                 if (chat == null) {
-                    throw new Exception($"Chat with name {chatName} not found.");
+                    throw new ChatNotFoundExeption(chatName);
                 }
 
                 return chat;
