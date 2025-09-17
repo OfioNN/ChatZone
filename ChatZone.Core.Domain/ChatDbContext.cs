@@ -32,7 +32,7 @@ namespace ChatZone.Core.Domain
             modelBuilder.Entity<Chat>().HasData(
                 new Chat {
                     ChatId = Guid.NewGuid(),
-                    Name = "Global",
+                    Name = "global",
                     CreatedAt = DateTime.UtcNow
                 }
             );
