@@ -1,4 +1,5 @@
-﻿using ChatZone.Core.Domain.Interfaces.Repositories;
+﻿using ChatZone.Core.Domain.Dtos;
+using ChatZone.Core.Domain.Interfaces.Repositories;
 using ChatZone.Core.Domain.Interfaces.Services;
 using ChatZone.Core.Domain.Models;
 using Microsoft.AspNetCore.Http;
@@ -10,19 +11,28 @@ namespace ChatZone.API.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly IAuthService _userService;
+        private readonly IAuthService _authService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthService userService) {
-            _userService = userService;
+        public AuthController(IAuthService authService, ILogger<AuthController> logger) {
+            _authService = authService;
+            _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<JsonResult> GetUser() {
-            await _userService.RegisterUser(new Core.Domain.Dtos.RegisterUserDto() {
-                Username = "test1",
-                Password = "test"
-            });
-            return Json("");
+        [HttpPut("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterUserDto registerUser) {
+            try {
+                await _authService.RegisterUser(registerUser);
+                return Ok(new { message = "User registered successfully."});
+            }
+            catch (InvalidOperationException ex) {
+                _logger.LogWarning(ex, $"Registration attempt failed: User already exist with login: {registerUser.Username}");
+                return Conflict(new { message = ex.Message });
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"An error occurred during registration for user: {registerUser.Username}");
+                return StatusCode(500, "An unexpected error occurred during registration.");
+            }
         }
     }
 }
