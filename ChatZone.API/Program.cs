@@ -1,3 +1,4 @@
+using ChatZone.API.Extensions;
 using ChatZone.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = configuration.GetValue<string>("ConnectionString");
-
-builder.Services.AddDbContext<ChatDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddConfiguration(configuration);
 
 var app = builder.Build();
 
