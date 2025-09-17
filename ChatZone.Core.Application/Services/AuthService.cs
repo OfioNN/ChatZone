@@ -17,10 +17,50 @@ namespace ChatZone.Core.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ILogger<AuthService> _logger;
+        private readonly IJwtService _jwtService;
 
-        public AuthService(IUserRepository userRepository, ILogger<AuthService> logger) {
+        public AuthService(IUserRepository userRepository, ILogger<AuthService> logger, IJwtService jwtService) {
             _userRepository = userRepository;
             _logger = logger;
+            _jwtService = jwtService;
+        }
+
+        public async Task<AuthDto> GetToken(LoginDto loginModel) {
+            try {
+                var user = await _userRepository.GetUserByLogin(loginModel.Username);
+                if (user == null) {
+                    _logger.LogWarning($"User not found: {loginModel.Username}");
+                    throw new InvalidOperationException("User with this login does not exist");
+                }
+
+                if (VerifyPassword(loginModel.Password, user.Password)) {
+                    var authData = _jwtService.GenerateJwtToken(user);
+
+                    return authData;
+                }
+                else {
+                    throw new UnauthorizedAccessException("Invalid credentials");
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, $"Error occurred while generating token for user with login: {loginModel.Username}");
+                throw;
+            }
+        }
+
+        private bool VerifyPassword(string enteredPassword, string storedPassword) {
+            var parts = storedPassword.Split(':');
+
+            if ( parts.Length != 2 ) {
+                throw new FormatException("Unexpected hash format. The stored hash should be in the format 'salt:hashedPassword");
+            }
+
+            var salt = Convert.FromBase64String(parts[0]);
+            var storedHashedPassword = parts[1];
+
+            var enteredHashedPassword = Hash(enteredPassword, salt);
+
+            return enteredHashedPassword == storedHashedPassword;
         }
 
         public async Task RegisterUser(RegisterUserDto registerUser) {
