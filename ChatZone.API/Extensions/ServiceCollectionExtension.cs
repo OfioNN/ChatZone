@@ -21,6 +21,11 @@ namespace ChatZone.API.Extensions {
             return services;
         }
 
+        public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration) {
+            services.Configure<JwtSettingOption>(options => configuration.GetSection(nameof(JwtSettingOption)).Bind(options));
+            return services;
+        }
+
         private static void AddCustomAuthentication(IServiceCollection services, IConfiguration configuration) {
             var jwtSettings = configuration.GetSection(nameof(JwtSettingOption)).Get<JwtSettingOption>();
 
@@ -51,6 +56,7 @@ namespace ChatZone.API.Extensions {
         public static IServiceCollection AddServices(this IServiceCollection services) {
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IJwtService, JwtService>();
             return services;
         }
     }
