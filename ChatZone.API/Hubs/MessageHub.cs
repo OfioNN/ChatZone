@@ -11,7 +11,7 @@ namespace ChatZone.API.Hubs {
         private readonly UserConnectionService _userConnectionService;
         private string _username => _userConnectionService.GetClaimValue(Context.User, ClaimTypes.NameIdentifier);
         private string _userId => _userConnectionService.GetClaimValue(Context.User, JwtRegisteredClaimNames.Jti);
-        private const string _mainChat = "global";
+        private const string _mainChat = "Global";
 
         public MessageHub(UserConnectionService userConnectionService) {
             _userConnectionService = userConnectionService;
@@ -28,6 +28,10 @@ namespace ChatZone.API.Hubs {
             _userConnectionService.RemoveConnection(_username);
             await LeaveChat(_mainChat);
             await base.OnDisconnectedAsync(exception);
+        }
+
+        public async Task SendMessageToChat(string chatId, string message) {
+            await Clients.Group(_mainChat).SendAsync("ReceiveMessage", _username, message);
         }
 
         private async Task JoinChat(string chatName) {
