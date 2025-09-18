@@ -79,6 +79,7 @@ namespace ChatZone.MessageBroker {
                 SenderId = messageDto.SenderId,
                 MessageText = messageDto.MessageText,
                 ChatId = messageDto.ChatId,
+                CreatedAt = messageDto.CreatedAt
             };
         }
 

@@ -13,6 +13,6 @@ namespace ChatZone.Core.Domain.Dtos
         public string MessageText { get; set; }
         public Guid ChatId { get; set; }
         public Guid SenderId { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
