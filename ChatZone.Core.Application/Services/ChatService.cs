@@ -50,6 +50,7 @@ namespace ChatZone.Core.Application.Services
                     .Select(x => new MessageDto {
                         MessageId = x.MessageId,
                         Sender = x.Sender.Username,
+                        SenderId = x.SenderId,
                         MessageText = x.MessageText,
                         CreatedAt = x.CreatedAt
                     })

@@ -43,7 +43,8 @@ namespace ChatZone.API.Hubs {
             return new MessageDto {
                 MessageText = message,
                 ChatId = Guid.Parse(chatId),
-                Sender = _username
+                Sender = _username,
+                SenderId = Guid.Parse(_userId)
             };
         }
 
