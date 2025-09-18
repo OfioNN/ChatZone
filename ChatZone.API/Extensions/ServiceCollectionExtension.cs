@@ -1,8 +1,10 @@
 ﻿using ChatZone.Core.Application.Services;
 using ChatZone.Core.Domain;
+using ChatZone.Core.Domain.Interfaces.Producer;
 using ChatZone.Core.Domain.Interfaces.Repositories;
 using ChatZone.Core.Domain.Interfaces.Services;
 using ChatZone.Core.Domain.Options;
+using ChatZone.Infrastructure.Producer;
 using ChatZone.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ namespace ChatZone.API.Extensions {
 
         public static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration) {
             services.Configure<JwtSettingOption>(options => configuration.GetSection(nameof(JwtSettingOption)).Bind(options));
+            services.Configure<KafkaOption>(options => configuration.GetSection(nameof(KafkaOption)).Bind(options));
             return services;
         }
 
@@ -74,6 +77,7 @@ namespace ChatZone.API.Extensions {
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IChatService, ChatService>();
             services.AddSingleton(new UserConnectionService());
+            services.AddTransient<IKafkaProducer, KafkaProducer>();
             services.AddSignalR();
             return services;
         }

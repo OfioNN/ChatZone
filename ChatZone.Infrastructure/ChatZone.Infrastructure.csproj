@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChatZone.Core.Domain\ChatZone.Core.Domain.csproj" />
   </ItemGroup>
 
