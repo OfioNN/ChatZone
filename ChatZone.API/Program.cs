@@ -1,4 +1,5 @@
 using ChatZone.API.Extensions;
+using ChatZone.API.Hubs;
 using ChatZone.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -61,6 +62,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
+
+app.MapHub<MessageHub>("/messageHub");
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -39,7 +39,21 @@ namespace ChatZone.API.Extensions {
             }).AddJwtBearer(options => {
                 options.SaveToken = true;
                 options.TokenValidationParameters = GetTokenValidationParams(key);
+                options.Events = GetEvents();
             });
+        }
+
+        private static JwtBearerEvents GetEvents() {
+            return new JwtBearerEvents {
+                OnMessageReceived = context => {
+                    var accessToken = context.Request.Query["token"];
+                    var path = context.HttpContext.Request.Path;
+                    if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/messageHub")) {
+                        context.Token = accessToken;
+                    }
+                    return Task.CompletedTask;
+                }
+            };
         }
 
         private static TokenValidationParameters GetTokenValidationParams(byte[] key) {
@@ -59,6 +73,8 @@ namespace ChatZone.API.Extensions {
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IChatService, ChatService>();
+            services.AddSingleton(new UserConnectionService());
+            services.AddSignalR();
             return services;
         }
     }
