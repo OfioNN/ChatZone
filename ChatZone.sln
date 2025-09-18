@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.Core.Application",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.MessageBroker", "ChatZone.MessageBroker\ChatZone.MessageBroker.csproj", "{EE0CABC7-647D-4F48-8A01-EE1D366B3449}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.AppHost", "ChatZone.AppHost\ChatZone.AppHost.csproj", "{045AA1C7-8D90-4120-BFA5-3F7A5A4874B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045AA1C7-8D90-4120-BFA5-3F7A5A4874B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045AA1C7-8D90-4120-BFA5-3F7A5A4874B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045AA1C7-8D90-4120-BFA5-3F7A5A4874B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045AA1C7-8D90-4120-BFA5-3F7A5A4874B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
