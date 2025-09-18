@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.API", "ChatZone.API\ChatZone.API.csproj", "{50600024-1411-4234-8BBE-4EE5F7F30EF6}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.Infrastructure", "ChatZone.Infrastructure\ChatZone.Infrastructure.csproj", "{1859336A-3149-422E-8384-4AA413BE49F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.Core.Application", "ChatZone.Core.Application\ChatZone.Core.Application.csproj", "{400BB26C-3A7C-43C9-9A64-158352757E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatZone.MessageBroker", "ChatZone.MessageBroker\ChatZone.MessageBroker.csproj", "{EE0CABC7-647D-4F48-8A01-EE1D366B3449}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{400BB26C-3A7C-43C9-9A64-158352757E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{400BB26C-3A7C-43C9-9A64-158352757E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{400BB26C-3A7C-43C9-9A64-158352757E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0CABC7-647D-4F48-8A01-EE1D366B3449}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
